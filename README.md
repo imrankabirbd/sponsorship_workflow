@@ -15,7 +15,7 @@ Make sure the following tools are installed:
 # 1. Clone the Repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/imrankabirbd/sponsorship_workflow
 cd <project-folder>
 ```
 
@@ -43,7 +43,7 @@ Example:
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=.;Database=SponsorshipDB;Trusted_Connection=True;TrustServerCertificate=True;"
+  "DefaultConnection": "Host=localhost;Database=sponsorship_db;Username=postgres;Password="
 }
 ```
 
