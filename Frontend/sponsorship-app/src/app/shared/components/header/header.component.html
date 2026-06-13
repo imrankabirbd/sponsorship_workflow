@@ -1,0 +1,72 @@
+<header class="header">
+  <div class="header-left">
+    <!-- Toggle Sidebar Button -->
+    <button class="btn-toggle" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Brand -->
+    <div class="brand">
+      <i class="fas fa-handshake me-2"></i>
+      <span>Sponsorship Workflow</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <!-- Date & Time -->
+    <div class="datetime me-3">
+      <i class="far fa-calendar-alt me-1"></i>
+      {{ currentDateTime | date: 'dd/MM/yyyy hh:mm:ss a' }}
+    </div>
+
+    <!-- Notifications -->
+    <div class="dropdown me-3">
+      <button class="btn-notification" data-bs-toggle="dropdown">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge" *ngIf="notificationCount > 0">
+          {{ notificationCount }}
+        </span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">Notifications</h6>
+        <div class="dropdown-item-text" *ngFor="let notification of getNotifications()">
+          <i class="fas fa-info-circle me-2"></i>
+          {{ notification }}
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-center" href="#">
+          View All Notifications
+        </a>
+      </div>
+    </div>
+
+    <!-- User Profile Dropdown -->
+    <div class="dropdown">
+      <button class="btn-user" data-bs-toggle="dropdown">
+        <div class="user-avatar-small">
+          <i [class]="getRoleIcon()"></i>
+        </div>
+        <span class="user-name">{{ userName }}</span>
+        <i class="fas fa-chevron-down ms-2"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end">
+        <div class="dropdown-header">
+          <strong>{{ userName }}</strong>
+          <br>
+          <small class="text-muted">{{ userRole }}</small>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="goToProfile()">
+          <i class="fas fa-user-circle me-2"></i> Profile
+        </a>
+        <a class="dropdown-item" (click)="goToSettings()">
+          <i class="fas fa-cog me-2"></i> Settings
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-danger" (click)="logout()">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

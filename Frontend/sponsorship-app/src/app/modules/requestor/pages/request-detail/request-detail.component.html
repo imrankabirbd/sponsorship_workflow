@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <div class="card" *ngIf="!isLoading && request">
+    <div class="card-header">
+      <h3>Request Details</h3>
+      <span class="badge" [class]="request.getStatusClass()">
+        {{ request.getStatusText() }}
+      </span>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Title:</strong> {{ request.title }}</p>
+          <p><strong>Department:</strong> {{ request.department }}</p>
+          <p><strong>Event Name:</strong> {{ request.eventName }}</p>
+          <p><strong>Event Date:</strong> {{ request.eventDate | date }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Sponsorship Type:</strong> {{ request.sponsorshipTypeName }}</p>
+          <p><strong>Amount:</strong> ${{ request.requestedAmount }}</p>
+          <p><strong>Status:</strong> {{ request.getStatusText() }}</p>
+          <p><strong>Created:</strong> {{ request.createdAt | date }}</p>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <p><strong>Justification:</strong></p>
+          <p>{{ request.justification }}</p>
+        </div>
+      </div>
+      <div class="row mt-3" *ngIf="request.managerRemarks?.trim()">
+        <div class="col-12">
+          <p><strong>Manager Remarks:</strong></p>
+          <p>{{ request.managerRemarks }}</p>
+        </div>
+      </div>
+       <div class="row mt-3" *ngIf="request.financeRemarks?.trim()">
+        <div class="col-12">
+          <p><strong>Finance Remarks:</strong></p>
+          <p>{{ request.financeRemarks }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button class="btn-edit" (click)="editRequest(request.id)" title="Edit" *ngIf="request.status === 'Draft'">Edit</button>
+      <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!canSubmit() || isSubmitting">
+        <i *ngIf="isSubmitting" class="fas fa-spinner fa-spin"></i>
+        {{ isSubmitting ? 'Submitting...' : 'Submit Request' }}
+      </button>
+    </div>
+  </div>
+</div>

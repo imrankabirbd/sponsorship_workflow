@@ -1,0 +1,294 @@
+.my-requests-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.page-header h2 i {
+  color: #667eea;
+  margin-right: 12px;
+}
+
+.page-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Filter Bar */
+.filter-bar {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 180px;
+  cursor: pointer;
+}
+
+.btn-create {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-create:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+.loading-spinner i {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.loading-spinner p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* No Data */
+.no-data {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+.no-data i {
+  font-size: 64px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.no-data h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.no-data p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Table Styles */
+.table-responsive {
+  background: white;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.requests-table th {
+  padding: 15px;
+  text-align: left;
+  background: #f8f9fa;
+  color: #555;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.requests-table td {
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  font-size: 14px;
+}
+
+.requests-table tr:hover {
+  background: #fafafa;
+}
+
+.title-cell {
+  font-weight: 500;
+  color: #333;
+}
+
+.amount {
+  font-weight: 600;
+  color: #28a745;
+}
+
+/* Badge Styles */
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.badge-warning {
+  background: #ffc107;
+  color: #333;
+}
+
+.badge-info {
+  background: #17a2b8;
+  color: white;
+}
+
+.badge-success {
+  background: #28a745;
+  color: white;
+}
+
+.badge-danger {
+  background: #dc3545;
+  color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-view, .btn-edit, .btn-cancel, .btn-submit {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-view {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.btn-view:hover {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-edit {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.btn-edit:hover {
+  background: #f57c00;
+  color: white;
+}
+
+.btn-submit {
+  background: #fed3e0;
+  color: #f57c00;
+}
+
+.btn-submit:hover {
+  background: #f57c00;
+  color: white;
+}
+
+.btn-cancel {
+  background: #fee;
+  color: #dc3545;
+}
+
+.btn-cancel:hover {
+  background: #dc3545;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .my-requests-container {
+    padding: 15px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    justify-content: space-between;
+  }
+
+  .filter-group select {
+    flex: 1;
+  }
+
+  .btn-create {
+    justify-content: center;
+  }
+
+  .requests-table th,
+  .requests-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .action-buttons {
+    flex-wrap: wrap;
+  }
+}

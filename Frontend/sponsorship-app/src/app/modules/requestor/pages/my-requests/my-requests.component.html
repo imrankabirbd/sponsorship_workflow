@@ -1,0 +1,89 @@
+<div class="my-requests-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2>
+      <i class="fas fa-list-alt"></i>
+      My Sponsorship Requests
+    </h2>
+    <p>View and manage all your sponsorship requests</p>
+  </div>
+
+  <!-- Filters and Actions -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Filter by Status:</label>
+      <select [(ngModel)]="filterStatus" class="form-control">
+        <option value="all">All Requests</option>
+        <option value="Draft">Draft</option>
+        <option value="PendingManager">Pending Manager</option>
+        <option value="PendingFinance">Pending Finance</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+
+    <button class="btn-create" routerLink="/requestor/create">
+      <i class="fas fa-plus"></i> Create New Request
+    </button>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" *ngIf="isLoading">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Loading requests...</p>
+  </div>
+
+  <!-- No Requests -->
+  <div class="no-data" *ngIf="!isLoading && filteredRequests.length === 0">
+    <i class="fas fa-inbox"></i>
+    <h3>No Requests Found</h3>
+    <p>You haven't created any sponsorship requests yet.</p>
+    <button class="btn-create" routerLink="/requestor/create">
+      <i class="fas fa-plus"></i> Create Your First Request
+    </button>
+  </div>
+
+  <!-- Requests Table -->
+  <div class="table-responsive" *ngIf="!isLoading && filteredRequests.length > 0">
+    <table class="requests-table">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Title</th>
+          <th>Event Name</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Created Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of filteredRequests">
+          <td>#{{ request.id }}</td>
+          <td class="title-cell">{{ request.title }}</td>
+          <td>{{ request.eventName }}</td>
+          <td class="amount">${{ request.requestedAmount | number }}</td>
+          <td>
+            <span class="badge" [class]="getStatusClass(request.status)">
+              {{ getStatusText(request.status) }}
+            </span>
+          </td>
+          <td>{{ request.createdAt | date:'dd/MM/yyyy' }}</td>
+          <td class="action-buttons">
+            <button class="btn-view" (click)="viewDetails(request.id)" title="View Details">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn-submit" (click)="submitRequest(request.id, request.requestorId)" title="Submit" *ngIf="request.status === 'Draft'">
+              <i class="fas fa-save"></i>
+            </button>
+            <button class="btn-edit" (click)="editRequest(request.id)" title="Edit" *ngIf="request.status === 'Draft'">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-cancel" (click)="cancelRequest(request.id)" title="Cancel" *ngIf="request.status === 'Draft' || request.status === 'PendingManager'">
+              <i class="fas fa-times"></i>
+            </button>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar - Hide on login page -->
+    <div class="col-md-2 p-0" *ngIf="isLoggedIn">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Main Content -->
+    <div [class.col-md-10]="isLoggedIn" [class.col-md-12]="!isLoggedIn">
+      <!-- Header -->
+      <app-header *ngIf="isLoggedIn"></app-header>
+
+      <!-- Loading Spinner -->
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

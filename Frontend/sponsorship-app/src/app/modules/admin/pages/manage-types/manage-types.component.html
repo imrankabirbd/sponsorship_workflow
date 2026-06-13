@@ -1,0 +1,105 @@
+<div class="create-request-container">
+  <div class="page-header">
+    <h2>
+      <i class="fas fa-plus-circle"></i>
+      {{ isUpdating ? 'Update Sponsorship Type' : 'Create Sponsorship Type' }}
+    </h2>
+  </div>
+
+  <div class="form-card">
+    <form [formGroup]="spTypeForm">
+      <!-- Basic Information Section -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <i class="fas fa-info-circle"></i>
+          Basic Information
+        </h3>
+
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="typeName">
+              Type Name <span class="required">*</span>
+            </label>
+            <input type="text" id="typeName" formControlName="typeName" class="form-control"
+              [class.is-invalid]="submitted && f['typeName'].invalid" placeholder="Enter type Name">
+            <div class="invalid-feedback" *ngIf="submitted && f['typeName'].invalid">
+              <span *ngIf="f['typeName'].errors?.['typeName']">Type name is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="description">
+              Description <span class="required">*</span>
+            </label>
+            <input type="text" id="description" formControlName="description" class="form-control"
+              [class.is-invalid]="submitted && f['title'].invalid" placeholder="Enter description">
+            <div class="invalid-feedback" *ngIf="submitted && f['description'].invalid">
+              <span *ngIf="f['description'].errors?.['required']">Description is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="maxAmount">
+              Max Amount <span class="required">*</span>
+            </label>
+            <input type="text" id="maxAmount" formControlName="maxAmount" class="form-control"
+              [class.is-invalid]="f['maxAmount'].invalid && (f['maxAmount'].dirty || f['maxAmount'].touched)" placeholder="Enter max amount">
+            <div class="invalid-feedback" *ngIf="f['maxAmount'].invalid && (f['maxAmount'].dirty || f['maxAmount'].touched)">
+              <span *ngIf="f['maxAmount'].errors?.['required']">Max amount is required</span>
+              <span *ngIf="f['maxAmount'].errors?.['pattern']">Only numbers are allowed</span>
+              <span *ngIf="f['maxAmount'].errors?.['min']">Minimum amount is 1000</span>
+              <span *ngIf="f['maxAmount'].errors?.['max']">Maximum amount is 10,00000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn-reset" (click)="onReset()">
+          <i class="fas fa-undo"></i> Reset
+        </button>
+        <button type="button" class="btn-draft" (click)="isUpdating? onUpdate() : onSave()" [disabled]="isSaving">
+          <i *ngIf="!isSaving" class="fas fa-save"></i>
+          <i *ngIf="isSaving" class="fas fa-spinner fa-spin"></i>
+          {{ isSaving ? 'Saving...': isUpdating ? 'Update': 'Save'}}
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="form-card mt-20">
+        <div class="form-section">
+             <h3 class="section-title">
+          <i class="fas fa-info-circle"></i>
+          Sponsorship Type List
+        </h3>
+          <div class="table-responsive" *ngIf="spTypeList.length > 0">
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Type Name</th>
+                  <th>Description</th>
+                  <th>Max Amount</th>
+                  <th>Created Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of spTypeList">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.typeName }}</td>
+                  <td>{{ item.description }}</td>
+                  <td>{{ item.maxAmount}} </td>
+                  <td>{{ item.createdAt| date:'dd/MM/yyyy' }}</td>
+                  <td>
+                      <button class="btn-edit" (click)="onEdit(item.id, item.typeName, item.description, item.maxAmount)" title="Edit"><i class="fas fa-edit"></i></button>
+                  </td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>

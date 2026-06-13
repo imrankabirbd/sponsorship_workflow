@@ -1,0 +1,63 @@
+/* Make sidebar and header fixed */
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Fixed Sidebar */
+.col-md-2.p-0 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #1a1e2b 0%, #2d3561 100%);
+}
+
+/* Main content margin to accommodate fixed sidebar */
+.col-md-10, .col-md-12 {
+  transition: all 0.3s ease;
+}
+
+/* When sidebar is visible (logged in) */
+.col-md-10 {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* When sidebar is hidden (login page) */
+.col-md-12 {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* Fixed Header */
+app-header {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: white;
+}
+
+/* Main content area */
+.main-content {
+  padding: 20px;
+  min-height: calc(100vh - 60px);
+  background: #f5f7fb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .col-md-2.p-0 {
+    width: 200px;
+  }
+
+  .col-md-10 {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+}

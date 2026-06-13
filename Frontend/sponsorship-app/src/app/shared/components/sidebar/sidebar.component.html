@@ -1,0 +1,32 @@
+<div class="sidebar">
+  <!-- User Profile Section -->
+  <div class="user-profile text-center py-4">
+    <div class="avatar-circle mb-3">
+      <span class="avatar-initials">{{ getUserInitials() }}</span>
+    </div>
+    <h5 class="user-name">{{ userName }}</h5>
+    <span class="user-role badge" [class]="getRoleBadgeClass()">
+      {{ userRole }}
+    </span>
+  </div>
+
+  <!-- Menu Items -->
+  <nav class="nav flex-column">
+    <a *ngFor="let item of menuItems"
+       class="nav-link"
+       [routerLink]="item.route"
+       [class.active]="item.active"
+       (click)="setActive(item)">
+      <i [class]="item.icon + ' me-2'"></i>
+      <span>{{ item.label }}</span>
+    </a>
+  </nav>
+
+  <!-- Logout Button -->
+  <div class="logout-section">
+    <button class="btn btn-danger w-100" (click)="logout()">
+      <i class="fas fa-sign-out-alt me-2"></i>
+      Logout
+    </button>
+  </div>
+</div>

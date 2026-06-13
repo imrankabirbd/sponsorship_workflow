@@ -1,0 +1,118 @@
+<div class="dashboard">
+  <!-- Welcome Section -->
+  <div class="welcome-card">
+    <h2>Welcome, {{ userName }}!</h2>
+    <p>{{ getRoleDescription() }}</p>
+  </div>
+
+  <!-- Stats Cards (Common for all roles) -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue">
+        <i class="fas fa-file-alt"></i>
+      </div>
+      <div class="stat-details">
+        <h3>{{ stats.total }}</h3>
+        <p>Total Requests</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon orange">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="stat-details">
+        <h3>{{ stats.pending }}</h3>
+        <p>Pending</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon green">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="stat-details">
+        <h3>{{ stats.approved }}</h3>
+        <p>Approved</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon red">
+        <i class="fas fa-times-circle"></i>
+      </div>
+      <div class="stat-details">
+        <h3>{{ stats.rejected }}</h3>
+        <p>Rejected</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== REQUESTOR SECTION ========== -->
+  <ng-container *ngIf="userRole === 'Requestor'">
+    <!-- Quick Actions -->
+    <div class="action-card">
+      <h4>Quick Actions</h4>
+      <div class="action-buttons">
+        <button class="btn-primary" routerLink="/requestor/create">
+          <i class="fas fa-plus"></i> Create New Request
+        </button>
+        <button class="btn-secondary" routerLink="/requestor/my-requests">
+          <i class="fas fa-list"></i> View My Requests
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- ========== MANAGER SECTION ========== -->
+  <ng-container *ngIf="userRole === 'Manager'">
+        <!-- Quick Actions -->
+    <div class="action-card">
+      <h4>Quick Actions</h4>
+      <div class="action-buttons">
+        <button class="btn-primary" routerLink="/manager/pending">
+          <i class="fas fa-plus"></i> Pending Request
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- ========== FINANCE SECTION ========== -->
+  <ng-container *ngIf="userRole === 'FinanceAdmin'">
+    <!-- Quick Actions -->
+    <div class="action-card">
+      <h4>Quick Actions</h4>
+      <div class="action-buttons">
+        <button class="btn-primary" routerLink="/finance/review">
+          <i class="fas fa-plus"></i> Pending Request
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- ========== ADMIN SECTION ========== -->
+  <ng-container *ngIf="userRole === 'SystemAdmin'">
+    <div class="stats-grid-2">
+      <div class="info-card">
+        <i class="fas fa-users"></i>
+        <div><h3>{{ totalUsers }}</h3><p>Total Users</p></div>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-file-alt"></i>
+        <div><h3>{{ totalRequests }}</h3><p>Total Requests</p></div>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <h4>Admin Actions</h4>
+      <div class="action-buttons">
+        <button class="btn-primary" routerLink="/admin/all-requests">
+          <i class="fas fa-tasks"></i> View All Requests
+        </button>
+        <button class="btn-secondary" routerLink="/admin/manage-types">
+          <i class="fas fa-tags"></i> Manage Types
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>
